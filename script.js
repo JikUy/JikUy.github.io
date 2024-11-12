@@ -1,3 +1,8 @@
+// Fonction pour basculer le mode sombre
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+}
+
 // Fonction pour traduire le texte en images et en prononciation
 function translateText() { 
   const inputText = document.getElementById('inputText').value;
