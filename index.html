@@ -69,7 +69,15 @@
 <body>
   <div class="container">
     <h1>Fookàmon Traduction</h1>
-        <small>Ne pas inclure de caractère spéciaux ou d'accents</small>
+    <small>Ne pas inclure de caractère spéciaux ou d'accents</small>
+
+    <!-- Ajout des boutons Fookàmon -->
+    <div>
+      <button onclick="setFookamonType('fookamon')">Fookàmon</button>
+      <button onclick="setFookamonType('ancien')">Fookàmon Ancien</button>
+      <button onclick="setFookamonType('nouveau')">Fookàmon Nouveau</button>
+    </div>
+
     <input type="text" id="inputText" placeholder="Enter text here..." />
     <button onclick="translateText()">Traduire</button>
     <div id="imageContainer"></div>
