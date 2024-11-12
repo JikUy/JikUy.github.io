@@ -1,31 +1,42 @@
-// Function to translate text into images
-function translateText() {
+// Fonction pour traduire le texte en images et en prononciation
+function translateText() { 
   const inputText = document.getElementById('inputText').value;
   const imageContainer = document.getElementById('imageContainer');
+  const pronunciationContainer = document.getElementById('pronunciationContainer');
   
-  // Clear previous images
+  // Efface les images et la prononciation précédentes
   imageContainer.innerHTML = '';
+  pronunciationContainer.innerHTML = '';
 
-  // Loop through each character in the input text
+  let pronunciationText = ''; // Texte de prononciation
+
+  // Boucle à travers chaque caractère du texte saisi
   for (let char of inputText.toLowerCase()) {
-    // Check if the character is alphanumeric or a special character
     const imgSrc = getImageForCharacter(char);
+    const pronunciation = getPronunciationForCharacter(char);
 
     if (imgSrc) {
-      // Create an image element and append it to the image container
+      // Crée un élément image et l'ajoute au conteneur d'images
       const img = document.createElement('img');
-      img.src = imgSrc;  // Image source based on the character
+      img.src = imgSrc;  // Source d'image basée sur le caractère
       img.alt = char;
       imageContainer.appendChild(img);
     } else {
-      console.warn(`No image found for character: ${char}`);
+      console.warn(`Aucune image trouvée pour le caractère : ${char}`);
+    }
+
+    // Ajoute la prononciation du caractère au texte de prononciation
+    if (pronunciation) {
+      pronunciationText += pronunciation + ' ';
     }
   }
+
+  // Affiche la prononciation dans le conteneur
+  pronunciationContainer.textContent = pronunciationText.trim();
 }
 
-// Function to return the image path for a character
+// Fonction pour obtenir le chemin de l'image pour un caractère
 function getImageForCharacter(char) {
-  // Character to image file name mapping (images in the same directory)
   const charToImageMap = {
     'a': 'a.png',
     'b': 'b.png',
@@ -63,9 +74,53 @@ function getImageForCharacter(char) {
     '7': '7.png',
     '8': '8.png',
     '9': '9.png',
-    ' ': 'space.png',  // Optional: space image if you want
+    ' ': 'space.png'
   };
 
-  // Return the image file path based on the character
-  return charToImageMap[char] || null; // Return null if no mapping is found
+  return charToImageMap[char] || null; // Retourne null si aucune correspondance n'est trouvée
+}
+
+// Fonction pour obtenir la prononciation pour un caractère
+function getPronunciationForCharacter(char) {
+  const charToPronunciationMap = {
+    'a': 'hè',
+    'b': 'ba',
+    'c': 'da',
+    'd': 'dé',
+    'e': 'è',
+    'f': 'èf',
+    'g': 'jé',
+    'h': 'aïch',
+    'i': 'i',
+    'j': 'ji',
+    'k': 'ka',
+    'l': 'èl',
+    'm': 'èm',
+    'n': 'èn',
+    'o': 'ô',
+    'p': 'pé',
+    'q': 'ku',
+    'r': 'èr',
+    's': 'ès',
+    't': 'té',
+    'u': 'u',
+    'v': 'vé',
+    'w': 'doublevé',
+    'x': 'iks',
+    'y': 'igrec',
+    'z': 'zèd',
+    '0': 'zéro',
+    '1': 'un',
+    '2': 'deux',
+    '3': 'trois',
+    '4': 'quatre',
+    '5': 'cinq',
+    '6': 'six',
+    '7': 'sept',
+    '8': 'huit',
+    '9': 'neuf',
+    ' ': ' '
+  };
+
+  return charToPronunciationMap[char] || ''; // Retourne une chaîne vide si aucune correspondance n'est trouvée
 }
