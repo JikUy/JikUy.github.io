@@ -6,7 +6,7 @@
   <title>Fookàmon Traduction</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Basic CSS reset and styling for layout */
+    /* Styles généraux */
     body {
       display: flex;
       flex-direction: column;
@@ -14,8 +14,10 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
+      transition: background-color 0.3s, color 0.3s;
     }
 
+    /* Container principal */
     .container {
       flex: 1;
       display: flex;
@@ -23,6 +25,28 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
+    }
+
+    /* Bouton pour le mode sombre */
+    .dark-mode-btn {
+      padding: 10px 20px;
+      margin-top: 15px;
+      cursor: pointer;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+
+    /* Styles du mode sombre */
+    body.dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+
+    body.dark-mode .dark-mode-btn {
+      background-color: #fff;
+      color: #333;
     }
 
     footer {
@@ -34,6 +58,12 @@
       font-size: 0.9em;
       color: #333;
     }
+
+    /* Ombre du curseur */
+    * {
+      cursor: pointer;
+      cursor-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
   </style>
 </head>
 <body>
@@ -41,9 +71,9 @@
     <h1>Fookàmon Traduction</h1>
     <input type="text" id="inputText" placeholder="Enter text here..." />
     <button onclick="translateText()">Traduire</button>
-    <button onclick="toggleDarkMode()">Mode Sombre</button> <!-- Bouton pour le mode sombre -->
     <div id="imageContainer"></div>
-    <div id="pronunciationContainer"></div>
+    <div id="pronunciationContainer" style="margin-top: 20px; font-size: 18px;"></div>
+    <button class="dark-mode-btn" onclick="toggleDarkMode()">Mode Sombre</button>
   </div>
 
   <footer>
