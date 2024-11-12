@@ -63,7 +63,6 @@ function getImageForCharacter(char) {
     '7': '7.png',
     '8': '8.png',
     '9': '9.png',
-    '$': 'dollar.png',
     ' ': 'space.png',  // Optional: space image if you want
   };
 
