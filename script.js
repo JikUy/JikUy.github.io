@@ -1,10 +1,13 @@
-// Fonction pour basculer le mode sombre
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
+let currentFookamonType = 'fookamon'; // Type de Fookàmon par défaut
+
+// Fonction pour changer le type de Fookàmon
+function setFookamonType(type) {
+  currentFookamonType = type;
+  console.log(`Type de Fookàmon changé en: ${type}`);
 }
 
 // Fonction pour traduire le texte en images et en prononciation
-function translateText() { 
+function translateText() {
   const inputText = document.getElementById('inputText').value;
   const imageContainer = document.getElementById('imageContainer');
   const pronunciationContainer = document.getElementById('pronunciationContainer');
@@ -40,49 +43,30 @@ function translateText() {
   pronunciationContainer.textContent = pronunciationText.trim();
 }
 
-// Fonction pour obtenir le chemin de l'image pour un caractère
+// Fonction pour obtenir le chemin de l'image pour un caractère en fonction du type de Fookàmon
 function getImageForCharacter(char) {
   const charToImageMap = {
-    'a': 'a.png',
-    'b': 'b.png',
-    'c': 'c.png',
-    'd': 'd.png',
-    'e': 'e.png',
-    'f': 'f.png',
-    'g': 'g.png',
-    'h': 'h.png',
-    'i': 'i.png',
-    'j': 'j.png',
-    'k': 'k.png',
-    'l': 'l.png',
-    'm': 'm.png',
-    'n': 'n.png',
-    'o': 'o.png',
-    'p': 'p.png',
-    'q': 'q.png',
-    'r': 'r.png',
-    's': 's.png',
-    't': 't.png',
-    'u': 'u.png',
-    'v': 'v.png',
-    'w': 'w.png',
-    'x': 'x.png',
-    'y': 'y.png',
-    'z': 'z.png',
-    '0': '0.png',
-    '1': '1.png',
-    '2': '2.png',
-    '3': '3.png',
-    '4': '4.png',
-    '5': '5.png',
-    '6': '6.png',
-    '7': '7.png',
-    '8': '8.png',
-    '9': '9.png',
-    ' ': 'space.png'
+    fookamon: {
+      'a': 'a.png',
+      'b': 'b.png',
+      'c': 'c.png',
+      // Ajoutez les autres caractères pour Fookàmon
+    },
+    ancien: {
+      'a': 'ancien_a.png',
+      'b': 'ancien_b.png',
+      'c': 'ancien_c.png',
+      // Ajoutez les autres caractères pour Fookàmon Ancien
+    },
+    nouveau: {
+      'a': 'nouveau_a.png',
+      'b': 'nouveau_b.png',
+      'c': 'nouveau_c.png',
+      // Ajoutez les autres caractères pour Fookàmon Nouveau
+    }
   };
 
-  return charToImageMap[char] || null; // Retourne null si aucune correspondance n'est trouvée
+  return charToImageMap[currentFookamonType][char] || null; // Retourne null si aucune correspondance n'est trouvée
 }
 
 // Fonction pour obtenir la prononciation pour un caractère
