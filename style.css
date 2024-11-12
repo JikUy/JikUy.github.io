@@ -25,6 +25,27 @@ h1 {
   text-transform: uppercase;
 }
 
+button, input {
+  position: relative;
+}
+
+button:hover::after, input:hover::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 122, 204, 0.6);
+  pointer-events: none; /* Assure que la pseudo-ombre n'interfère pas avec les clics */
+}
+
+button, input {
+  /* Styles existants */
+}
+
+
 input {
   padding: 10px;
   font-size: 16px;
