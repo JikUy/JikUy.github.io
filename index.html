@@ -5,19 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fookàmon Traduction</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Basic CSS reset and styling for layout */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #e0e0e0;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 0.9em;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1>Fookàmon Traduction</h1>
-    <h2>S'il vous plait ne mettez pas de caractères spéciaux ou accents</h2>
-        <h2>Caractères: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</h2>
     <input type="text" id="inputText" placeholder="Enter text here..." />
     <button onclick="translateText()">Traduire</button>
     <div id="imageContainer"></div>
   </div>
 
   <footer>
-    <p>Tout les droits de Fookàmon© appartienent Roman Bouchard</p>
+    <p>&copy; 2024 Fookàmon. Tous les droits sont réservés par Roman Bouchard.</p>
   </footer>
 
   <script src="script.js"></script>
