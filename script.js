@@ -103,7 +103,7 @@ function getPronunciationForCharacter(char) {
     'r': 'ri-',
     's': 'zi-',
     't': 'ou-',
-    'u': 'i-',
+    'u': 'ille-',
     'v': 'oui-',
     'w': 'oua-',
     'x': 'ak-',
