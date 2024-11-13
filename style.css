@@ -18,6 +18,22 @@ body {
   width: 100%;
 }
 
+body.dark-mode {
+  background-color: #808080; /* Dark grey for body */
+  color: #fff;
+}
+
+footer.dark-mode {
+  background-color: #000; /* Black footer */
+  color: #fff; /* White text */
+}
+
+body.dark-mode .dark-mode-btn {
+  background-color: #fff;
+  color: #333;
+}
+
+
 h1 {
   font-size: 28px;
   color: #333;
