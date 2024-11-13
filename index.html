@@ -1,148 +1,192 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fookàmon Traduction</title>
-  <link rel="stylesheet" href="style.css">
-<style>
-    /* General page styling */
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5; /* Light gray background */
-      color: #333; /* Dark gray text */
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    /* Main container styling */
-    .container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
-      border-radius: 15px;
-      background-color: #ffffff; /* White container */
-      color: #333;
-      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .container:hover {
-      transform: translateY(-5px);
-      box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.15);
-    }
-
-    h1 {
-      color: #0056b3; /* Blue for title */
-      font-weight: bold;
-      text-transform: uppercase;
-      font-size: 2em;
-      transition: color 0.3s ease;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    }
-
-    input[type="text"] {
-      padding: 10px;
-      width: 80%;
-      margin: 15px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 1em;
-      transition: box-shadow 0.3s ease;
-    }
-
-    input[type="text"]:focus {
-      box-shadow: 0px 4px 10px rgba(0, 86, 179, 0.3); /* Light blue shadow on focus */
-      outline: none;
-    }
-
-    /* Button styling */
-    button {
-      padding: 12px 24px;
-      margin: 10px;
-      cursor: pointer;
-      border: none;
-      border-radius: 25px;
-      font-size: 1em;
-      transition: all 0.3s ease;
-      color: #ffffff;
-      background-color: #0056b3; /* Blue button */
-      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
-      background-color: #003a75; /* Darker blue on hover */
-    }
-
-    .dark-mode-btn {
-      background-color: #333333; /* Dark gray for dark mode button */
-      color: #ffffff;
-    }
-
-    /* Dark mode styles */
-    body.dark-mode {
-      background-color: #1c1c1c; /* Very dark gray background */
-      color: #ffffff; /* White text */
-    }
-
-    .container.dark-mode {
-      background-color: #2e2e2e; /* Dark gray container */
-      color: #ffffff;
-      box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.1);
-    }
-
-    .container.dark-mode h1 {
-      color: #4285f4; /* Lighter blue for title in dark mode */
-      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px;
-      background-color: #f5f5f5;
-      width: 100%;
-      box-sizing: border-box;
-      font-size: 0.9em;
-      color: #333;
-    }
-
-    footer.dark-mode {
-      background-color: #1c1c1c; /* Match dark background */
-      color: #ffffff; /* White text for footer in dark mode */
-    }
-
-  #imageContainer img {
-  border: none; /* Supprime la bordure de l'image */
-  outline: none; /* Supprime le contour de l'image */
+// Fonction pour activer/désactiver le mode sombre
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  const footer = document.querySelector('footer');
+  footer.classList.toggle('dark-mode');
+  const container = document.querySelector('.container');
+  container.classList.toggle('dark-mode');
 }
 
-</style>
+// Fonction pour traduire le texte en images et en prononciation
+function translateText() {
+  const inputText = document.getElementById('inputText').value;
+  const imageContainer = document.getElementById('imageContainer');
+  const pronunciationContainer = document.getElementById('pronunciationContainer');
+  
+  // Efface les images et la prononciation précédentes
+  imageContainer.innerHTML = '';
+  pronunciationContainer.innerHTML = '';
 
+  let pronunciationText = ''; // Texte de prononciation
 
-</head>
-<body>
-  <div class="container">
-    <h1>Fookàmon Traduction</h1>
-    <small>Ne pas inclure de caractère spéciaux ou d'accents</small>
-    <input type="text" id="inputText" placeholder="Enter text here..." />
-    <button onclick="translateText()">Traduire</button>
-    <button class="dark-mode-btn" onclick="toggleDarkMode()">Mode sombre</button>
-    <div id="imageContainer"></div>
-    <div id="pronunciationContainer" style="margin-top: 20px; font-size: 18px;"></div>
-  </div>
+  // Boucle à travers chaque caractère du texte saisi (garde la casse originale)
+  for (let char of inputText) {
+    const imgSrc = getImageForCharacter(char);
+    const pronunciation = getPronunciationForCharacter(char);
 
-  <footer>
-    <p>&copy; 2024 Fookàmon. Tous les droits sont réservés par Roman Bouchard. (Ce site à été fait en 10 Minutes, soiyez indulgents.)</p>
-  </footer>
+    if (imgSrc) {
+      // Crée un élément image et l'ajoute au conteneur d'images
+      const img = document.createElement('img');
+      img.src = imgSrc;  // Source d'image basée sur le caractère
+      img.alt = char;
+      imageContainer.appendChild(img);
+    } else {
+      console.warn(`Aucune image trouvée pour le caractère : ${char}`);
+    }
 
-  <script src="script.js"></script>
-</body>
-</html>
+    // Ajoute la prononciation du caractère au texte de prononciation
+    if (pronunciation) {
+      pronunciationText += pronunciation + ' ';
+    }
+  }
+
+  // Affiche la prononciation dans le conteneur
+  pronunciationContainer.textContent = pronunciationText.trim();
+}
+
+// Fonction pour obtenir le chemin de l'image pour un caractère
+function getImageForCharacter(char) {
+  const charToImageMap = {
+    'a': 'a.png',
+    'b': 'b.png',
+    'c': 'c.png',
+    'd': 'd.png',
+    'e': 'e.png',
+    'f': 'f.png',
+    'g': 'g.png',
+    'h': 'h.png',
+    'i': 'i.png',
+    'j': 'j.png',
+    'k': 'k.png',
+    'l': 'l.png',
+    'm': 'm.png',
+    'n': 'n.png',
+    'o': 'o.png',
+    'p': 'p.png',
+    'q': 'q.png',
+    'r': 'r.png',
+    's': 's.png',
+    't': 't.png',
+    'u': 'u.png',
+    'v': 'v.png',
+    'w': 'w.png',
+    'x': 'x.png',
+    'y': 'y.png',
+    'z': 'z.png',
+    
+    'A': 'aM.png',
+    'B': 'bM.png',
+    'C': 'cM.png',
+    'D': 'dM.png',
+    'E': 'eM.png',
+    'F': 'fM.png',
+    'G': 'gM.png',
+    'H': 'hM.png',
+    'I': 'iM.png',
+    'J': 'jM.png',
+    'K': 'kM.png',
+    'L': 'lM.png',
+    'M': 'mM.png',
+    'N': 'nM.png',
+    'O': 'oM.png',
+    'P': 'pM.png',
+    'Q': 'qM.png',
+    'R': 'rM.png',
+    'S': 'sM.png',
+    'T': 'tM.png',
+    'U': 'uM.png',
+    'V': 'vM.png',
+    'W': 'wM.png',
+    'X': 'xM.png',
+    'Y': 'yM.png',
+    'Z': 'zM.png',
+
+    '0': '0.png',
+    '1': '1.png',
+    '2': '2.png',
+    '3': '3.png',
+    '4': '4.png',
+    '5': '5.png',
+    '6': '6.png',
+    '7': '7.png',
+    '8': '8.png',
+    '9': '9.png',
+    ' ': 'space.png'
+  };
+
+  return charToImageMap[char] || null; // Retourne null si aucune correspondance n'est trouvée
+}
+
+// Fonction pour obtenir la prononciation pour un caractère
+function getPronunciationForCharacter(char) {
+  const charToPronunciationMap = {
+    'a': 'hè-',
+    'b': 'ba-',
+    'c': 'da-',
+    'd': 'bo-',
+    'e': 'é-',
+    'f': 'è-',
+    'g': 'la-',
+    'h': 'lo-',
+    'i': 'pi-',
+    'j': 'pa-',
+    'k': 'je-',
+    'l': 'ja-',
+    'm': 'mo-',
+    'n': 'mu-',
+    'o': 'do-',
+    'p': 'ké-',
+    'q': 'ka-',
+    'r': 'ri-',
+    's': 'zi-',
+    't': 'ou-',
+    'u': 'ille-',
+    'v': 'oui-',
+    'w': 'oua-',
+    'x': 'ak-',
+    'y': 'ik-',
+    'z': 'oy-',
+
+    // Ajout des majuscules dans la carte de prononciation
+    'A': 'hè-',
+    'B': 'ba-',
+    'C': 'da-',
+    'D': 'bo-',
+    'E': 'é-',
+    'F': 'è-',
+    'G': 'la-',
+    'H': 'lo-',
+    'I': 'pi-',
+    'J': 'pa-',
+    'K': 'je-',
+    'L': 'ja-',
+    'M': 'mo-',
+    'N': 'mu-',
+    'O': 'do-',
+    'P': 'ké-',
+    'Q': 'ka-',
+    'R': 'ri-',
+    'S': 'zi-',
+    'T': 'ou-',
+    'U': 'ille-',
+    'V': 'oui-',
+    'W': 'oua-',
+    'X': 'ak-',
+    'Y': 'ik-',
+    'Z': 'oy-',
+
+    '0': 'ouss-',
+    '1': 'ouz-',
+    '2': 'ouk-',
+    '3': 'oup-',
+    '4': 'oud-',
+    '5': 'oub-',
+    '6': 'oul-',
+    '7': 'out-',
+    '8': 'ouf-',
+    '9': 'ouve-',
+    ' ': ''
+  };
+
+  return charToPronunciationMap[char] || ''; // Retourne une chaîne vide si aucune correspondance n'est trouvée
+}
