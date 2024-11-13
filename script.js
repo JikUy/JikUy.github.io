@@ -124,7 +124,7 @@ function getPronunciationForCharacter(char) {
     '7': 'out-',
     '8': 'ouf-',
     '9': 'ouve-',
-    ' ': ' -'
+    ' ': ''
   };
 
   return charToPronunciationMap[char] || ''; // Retourne une chaîne vide si aucune correspondance n'est trouvée
