@@ -36,8 +36,13 @@
     }
 
     body.dark-mode {
-      background-color: #333;
+      background-color: #808080; /* Dark grey for body */
       color: #fff;
+    }
+
+    footer.dark-mode {
+      background-color: #000; /* Black footer */
+      color: #fff; /* White text */
     }
 
     body.dark-mode .dark-mode-btn {
@@ -89,6 +94,7 @@
   <script>
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
+      document.querySelector('footer').classList.toggle('dark-mode');
     }
 
     // Fonction pour traduire le texte en images et en prononciation
