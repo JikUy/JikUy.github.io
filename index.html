@@ -118,6 +118,12 @@
       background-color: #1c1c1c; /* Match dark background */
       color: #ffffff; /* White text for footer in dark mode */
     }
+
+  #imageContainer img {
+  border: none; /* Supprime la bordure de l'image */
+  outline: none; /* Supprime le contour de l'image */
+}
+
 </style>
 
 
@@ -129,6 +135,7 @@
     <input type="text" id="inputText" placeholder="Enter text here..." />
     <button onclick="translateText()">Traduire</button>
     <button class="dark-mode-btn" onclick="toggleDarkMode()">Mode sombre</button>
+    <div id="imageContainer"></div>
     <div id="pronunciationContainer" style="margin-top: 20px; font-size: 18px;"></div>
   </div>
 
