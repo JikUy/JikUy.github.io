@@ -64,7 +64,7 @@ function getImageForCharacter(char) {
     ' ': 'space.png'
   };
 
-  return charToImageMap[char] || null; // Retourne null si aucune correspondance n'est trouvée
+  return charToImageMap[char] || null; // ok
 }
 
 // Fonction pour obtenir la prononciation pour un caractère
