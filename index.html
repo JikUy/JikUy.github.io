@@ -9,7 +9,8 @@
     /* Styles généraux */
     body {
       display: flex;
-      flex-direction: row;
+      justify-content: center; /* Centre le conteneur */
+      align-items: center; /* Centre verticalement */
       min-height: 100vh;
       margin: 0;
       font-family: Arial, sans-serif;
@@ -19,35 +20,34 @@
 
     /* Container principal */
     .container {
-      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       padding: 20px;
       border-radius: 10px;
-      background-color: #fff; /* Par défaut, fond clair */
-      color: #333; /* Couleur du texte par défaut */
+      background-color: #fff;
+      color: #333;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     /* Mode sombre */
     body.dark-mode {
-      background-color: #000; /* Corps en noir */
-      color: #fff; /* Texte en blanc */
+      background-color: #000;
+      color: #fff;
     }
 
     .container.dark-mode {
-      background-color: #333; /* Conteneur en gris foncé */
-      color: #fff; /* Texte en blanc */
+      background-color: #333;
+      color: #fff;
     }
 
     h1 {
-      color: #333; /* Couleur du titre par défaut */
-      transition: color 0.3s ease; /* Transition pour la couleur */
+      color: #333;
+      transition: color 0.3s ease;
     }
 
     .container.dark-mode h1 {
-      color: #fff; /* Titre en blanc en mode sombre */
+      color: #fff;
     }
 
     footer {
@@ -61,8 +61,8 @@
     }
 
     footer.dark-mode {
-      background-color: #000; /* Footer en noir */
-      color: #fff; /* Texte en blanc dans le footer */
+      background-color: #000;
+      color: #fff;
     }
 
     .dark-mode-btn {
@@ -80,8 +80,12 @@
       color: #333;
     }
 
-    /* Styles pour la barre de boutons à droite */
+    /* Styles pour la barre de boutons */
     .button-bar {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -89,7 +93,8 @@
       padding: 20px;
       background-color: #f0f0f0;
       width: 150px;
-      border-left: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .button-bar button {
@@ -133,7 +138,7 @@
     <div id="pronunciationContainer" style="margin-top: 20px; font-size: 18px;"></div>
   </div>
 
-  <!-- Barre de boutons à droite -->
+  <!-- Barre de boutons sur le côté droit de l'écran -->
   <div class="button-bar">
     <button onclick="functionOne()">Button 1</button>
     <button onclick="functionTwo()">Button 2</button>
