@@ -6,7 +6,6 @@
   <title>Fookàmon Traduction</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Styles généraux */
     body {
       display: flex;
       flex-direction: column;
@@ -15,39 +14,93 @@
       font-family: Arial, sans-serif;
       background-color: #f0ffff;
       transition: background-color 0.3s, color 0.3s;
+      overflow: hidden;
     }
 
-    /* Container principal */
+    /* Main container styling */
     .container {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      border-radius: 10px;
-      background-color: #fff; /* Par défaut, fond clair */
-      color: #333; /* Couleur du texte par défaut */
+      padding: 30px;
+      border-radius: 15px;
+      background-color: #fff;
+      color: #333;
+      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    /* Mode sombre */
-    body.dark-mode {
-      background-color: #000; /* Corps en noir */
-      color: #fff; /* Texte en blanc */
-    }
-
-    .container.dark-mode {
-      background-color: #333; /* Conteneur en gris foncé */
-      color: #fff; /* Texte en blanc */
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.15);
     }
 
     h1 {
-      color: #333; /* Couleur du titre par défaut */
-      transition: color 0.3s ease; /* Transition pour la couleur */
+      color: #333;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 2em;
+      transition: color 0.3s ease;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 80%;
+      margin: 15px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      transition: box-shadow 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      box-shadow: 0px 4px 10px rgba(0, 150, 255, 0.3);
+      outline: none;
+    }
+
+    /* Button styling */
+    button {
+      padding: 12px 24px;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      transition: all 0.3s ease;
+      color: #fff;
+      background-color: #333;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+      background-color: #555;
+    }
+
+    .dark-mode-btn {
+      background-color: #ffcc00;
+      color: #333;
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #1b1b1b;
+      color: #eee;
+    }
+
+    .container.dark-mode {
+      background-color: #2a2a2a;
+      color: #eee;
+      box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.1);
     }
 
     .container.dark-mode h1 {
-      color: #fff; /* Titre en blanc en mode sombre */
+      color: #ffcc00;
+      text-shadow: 1px 1px 2px rgba(255, 255, 0, 0.2);
     }
 
     footer {
@@ -61,23 +114,8 @@
     }
 
     footer.dark-mode {
-      background-color: #000; /* Footer en noir */
-      color: #fff; /* Texte en blanc dans le footer */
-    }
-
-    .dark-mode-btn {
-      padding: 10px 20px;
-      margin-top: 15px;
-      cursor: pointer;
-      background-color: #333;
+      background-color: #000;
       color: #fff;
-      border: none;
-      border-radius: 5px;
-    }
-
-    body.dark-mode .dark-mode-btn {
-      background-color: #fff;
-      color: #333;
     }
   </style>
 </head>
