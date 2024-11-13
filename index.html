@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fookàmon Traduction</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    /* Styles généraux */
     body {
       display: flex;
       flex-direction: column;
@@ -16,6 +17,7 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
+    /* Container principal */
     .container {
       flex: 1;
       display: flex;
@@ -24,38 +26,28 @@
       justify-content: center;
       padding: 20px;
       border-radius: 10px;
-      background-color: #fff; /* Light background for the container by default */
-      color: #333; /* Default text color */
+      background-color: #fff; /* Par défaut, fond clair */
+      color: #333; /* Couleur du texte par défaut */
     }
 
-    .dark-mode-btn {
-      padding: 10px 20px;
-      margin-top: 15px;
-      cursor: pointer;
-      background-color: #333;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-    }
-
+    /* Mode sombre */
     body.dark-mode {
-      background-color: #000; /* Black for body */
-      color: #fff;
+      background-color: #000; /* Corps en noir */
+      color: #fff; /* Texte en blanc */
     }
 
     .container.dark-mode {
-      background-color: #333; /* Dark gray for the container in dark mode */
-      color: #fff; /* White text in dark mode */
+      background-color: #333; /* Conteneur en gris foncé */
+      color: #fff; /* Texte en blanc */
     }
 
-    footer.dark-mode {
-      background-color: #000; /* Black footer */
-      color: #fff; /* White text */
+    h1 {
+      color: #333; /* Couleur du titre par défaut */
+      transition: color 0.3s ease; /* Transition pour la couleur */
     }
 
-    body.dark-mode .dark-mode-btn {
-      background-color: #fff;
-      color: #333;
+    .container.dark-mode h1 {
+      color: #fff; /* Titre en blanc en mode sombre */
     }
 
     footer {
@@ -68,15 +60,24 @@
       color: #333;
     }
 
-    #imageContainer img {
-      width: 100px;
-      height: 100px;
-      margin: 10px;
-      border-radius: 8px;
+    footer.dark-mode {
+      background-color: #000; /* Footer en noir */
+      color: #fff; /* Texte en blanc dans le footer */
     }
 
-    #audioPlayer {
-      margin-top: 20px;
+    .dark-mode-btn {
+      padding: 10px 20px;
+      margin-top: 15px;
+      cursor: pointer;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+
+    body.dark-mode .dark-mode-btn {
+      background-color: #fff;
+      color: #333;
     }
   </style>
 </head>
@@ -86,158 +87,15 @@
     <small>Ne pas inclure de caractère spéciaux ou d'accents</small>
     <input type="text" id="inputText" placeholder="Enter text here..." />
     <button onclick="translateText()">Traduire</button>
-    <button onclick="toggleDarkMode()" class="dark-mode-btn">Mode Sombre (NON  RECOMMANDÉ, EN BÊTA)</button>
+    <button class="dark-mode-btn" onclick="toggleDarkMode()">Mode sombre</button>
     <div id="imageContainer"></div>
     <div id="pronunciationContainer" style="margin-top: 20px; font-size: 18px;"></div>
-    <audio id="audioPlayer" controls style="display: none;">
-      <source id="audioSource" src="" type="audio/mp3">
-      Your browser does not support the audio element.
-    </audio>
   </div>
 
   <footer>
     <p>&copy; 2024 Fookàmon. Tous les droits sont réservés par Roman Bouchard.</p>
   </footer>
 
-  <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-      document.querySelector('footer').classList.toggle('dark-mode');
-      document.querySelector('.container').classList.toggle('dark-mode');
-    }
-
-    // Fonction pour traduire le texte en images et en prononciation
-    function translateText() { 
-      const inputText = document.getElementById('inputText').value;
-      const imageContainer = document.getElementById('imageContainer');
-      const pronunciationContainer = document.getElementById('pronunciationContainer');
-      const audioPlayer = document.getElementById('audioPlayer');
-      const audioSource = document.getElementById('audioSource');
-      
-      // Efface les images et la prononciation précédentes
-      imageContainer.innerHTML = '';
-      pronunciationContainer.innerHTML = '';
-      audioSource.src = '';
-
-      let pronunciationText = ''; // Texte de prononciation
-
-      // Boucle à travers chaque caractère du texte saisi
-      for (let char of inputText.toLowerCase()) {
-        const imgSrc = getImageForCharacter(char);
-        const pronunciation = getPronunciationForCharacter(char);
-
-        if (imgSrc) {
-          // Crée un élément image et l'ajoute au conteneur d'images
-          const img = document.createElement('img');
-          img.src = imgSrc;  // Source d'image basée sur le caractère
-          img.alt = char;
-          imageContainer.appendChild(img);
-        } else {
-          console.warn(`Aucune image trouvée pour le caractère : ${char}`);
-        }
-
-        // Ajoute la prononciation du caractère au texte de prononciation
-        if (pronunciation) {
-          pronunciationText += pronunciation + ' ';
-        }
-        
-        // Optionally: play pronunciation audio
-        const audioPath = `${char}.mp3`; // Assuming MP3 files are named like 'a.mp3'
-        if (audioExists(audioPath)) {
-          audioSource.src = audioPath;
-          audioPlayer.style.display = 'block';
-          audioPlayer.load();
-          audioPlayer.play();
-        }
-      }
-
-      // Affiche la prononciation dans le conteneur
-      pronunciationContainer.textContent = pronunciationText.trim();
-    }
-
-    // Function to check if the audio file exists (simple check for demonstration)
-    function audioExists(path) {
-      const img = new Image();
-      img.src = path;
-      return img.complete;
-    }
-
-    // Fonction pour obtenir le chemin de l'image pour un caractère
-    function getImageForCharacter(char) {
-      const charToImageMap = {
-        'a': 'a.png',
-        'b': 'b.png',
-        'c': 'c.png',
-        'd': 'd.png',
-        'e': 'e.png',
-        'f': 'f.png',
-        'g': 'g.png',
-        'h': 'h.png',
-        'i': 'i.png',
-        'j': 'j.png',
-        'k': 'k.png',
-        'l': 'l.png',
-        'm': 'm.png',
-        'n': 'n.png',
-        'o': 'o.png',
-        'p': 'p.png',
-        'q': 'q.png',
-        'r': 'r.png',
-        's': 's.png',
-        't': 't.png',
-        'u': 'u.png',
-        'v': 'v.png',
-        'w': 'w.png',
-        'x': 'x.png',
-        'y': 'y.png',
-        'z': 'z.png',
-        '0': '0.png',
-        '1': '1.png',
-        '2': '2.png',
-        '3': '3.png',
-        '4': '4.png',
-        '5': '5.png',
-        '6': '6.png',
-        '7': '7.png',
-        '8': '8.png',
-        '9': '9.png',
-        ' ': 'space.png'
-      };
-      return charToImageMap[char] || null; // Retourne null si aucune correspondance n'est trouvée
-    }
-
-    // Fonction pour obtenir la prononciation pour un caractère
-    function getPronunciationForCharacter(char) {
-      const charToPronunciationMap = {
-        'a': 'hè-',
-        'b': 'ba-',
-        'c': 'da-',
-        'd': 'bo-',
-        'e': 'é-',
-        'f': 'è-',
-        'g': 'la-',
-        'h': 'lo-',
-        'i': 'pi-',
-        'j': 'pa-',
-        'k': 'je-',
-        'l': 'ja-',
-        'm': 'mo-',
-        'n': 'mu-',
-        'o': 'do-',
-        'p': 'ké-',
-        'q': 'ka-',
-        'r': 'ri-',
-        's': 'zi-',
-        't': 'ou-',
-        'u': 'ille-',
-        'v': 'oui-',
-        'w': 'oua-',
-        'x': 'xa-',
-        'y': 'ya-',
-        'z': 'za-'
-      };
-      return charToPronunciationMap[char] || ''; // Return an empty string if no pronunciation is found
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
