@@ -64,22 +64,73 @@
       cursor: pointer;
       cursor-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     }
+
+    /* Image container style */
+    #imageContainer img {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      border-radius: 8px;
+    }
+
+    /* Audio player style */
+    #audioPlayer {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Fookàmon Traduction</h1>
-        <small>Ne pas inclure de caractère spéciaux ou d'accents</small>
+    <small>Ne pas inclure de caractère spéciaux ou d'accents</small>
     <input type="text" id="inputText" placeholder="Enter text here..." />
     <button onclick="translateText()">Traduire</button>
     <div id="imageContainer"></div>
     <div id="pronunciationContainer" style="margin-top: 20px; font-size: 18px;"></div>
+    <audio id="audioPlayer" controls style="display: none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
   </div>
 
   <footer>
     <p>&copy; 2024 Fookàmon. Tous les droits sont réservés par Roman Bouchard.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // This function simulates translating the text and displays corresponding images and audio
+    function translateText() {
+      const inputText = document.getElementById('inputText').value.toLowerCase();
+      const imageContainer = document.getElementById('imageContainer');
+      const pronunciationContainer = document.getElementById('pronunciationContainer');
+      const audioPlayer = document.getElementById('audioPlayer');
+      const audioSource = document.getElementById('audioSource');
+      
+      // Clear previous results
+      imageContainer.innerHTML = '';
+      pronunciationContainer.innerHTML = '';
+      audioSource.src = '';
+
+      // Simulating translation: map input to images and mp3
+      const validImageFile = `${inputText}.png`;
+      const validAudioFile = `${inputText}.mp3`;
+
+      // Display image
+      const imageElement = document.createElement('img');
+      imageElement.src = validImageFile;
+      imageElement.alt = inputText;
+      imageContainer.appendChild(imageElement);
+
+      // Play pronunciation (audio)
+      audioSource.src = validAudioFile;
+      audioPlayer.style.display = 'block';
+      audioPlayer.load();
+      audioPlayer.play();
+
+      // Display pronunciation text
+      pronunciationContainer.innerText = `Pronunciation for "${inputText}":`;
+    }
+  </script>
+
 </body>
-</html> 
+</html>
