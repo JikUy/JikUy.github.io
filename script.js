@@ -1,10 +1,14 @@
-
+// Fonction pour activer/désactiver le mode sombre
 function toggleDarkMode() {
   document.body.classList.toggle('dark-mode');
+  const footer = document.querySelector('footer');
+  footer.classList.toggle('dark-mode');
+  const container = document.querySelector('.container');
+  container.classList.toggle('dark-mode');
 }
 
 // Fonction pour traduire le texte en images et en prononciation
-function translateText() { 
+function translateText() {
   const inputText = document.getElementById('inputText').value;
   const imageContainer = document.getElementById('imageContainer');
   const pronunciationContainer = document.getElementById('pronunciationContainer');
@@ -128,4 +132,4 @@ function getPronunciationForCharacter(char) {
   };
 
   return charToPronunciationMap[char] || ''; // Retourne une chaîne vide si aucune correspondance n'est trouvée
-} 
+}
