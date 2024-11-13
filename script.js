@@ -3,21 +3,23 @@ let currentFookamonType = 'fookamon'; // Type de Fookàmon par défaut
 // Fonction pour changer le type de Fookàmon
 function setFookamonType(type) {
   currentFookamonType = type;
-  updateButtonStyles();
+  updateButtonStyles(); // Met à jour le style des boutons
   console.log(`Type de Fookàmon changé en: ${type}`);
 }
 
 // Fonction pour mettre à jour les styles des boutons
 function updateButtonStyles() {
-  // Désactive tous les boutons
+  // Désactive tous les boutons (les réinitialise)
   const buttons = document.querySelectorAll('.button-container button');
   buttons.forEach(button => {
-    button.classList.remove('active');
+    button.classList.remove('active'); // Retirer la classe active
   });
 
   // Active le bouton sélectionné
   const activeButton = document.getElementById(`${currentFookamonType}Btn`);
-  activeButton.classList.add('active');
+  if (activeButton) {
+    activeButton.classList.add('active'); // Ajouter la classe active
+  }
 }
 
 // Fonction pour traduire le texte en images et en prononciation
