@@ -15,27 +15,54 @@
       font-family: Arial, sans-serif;
       background-color: #f0ffff;
       transition: background-color 0.3s, color 0.3s;
+      align-items: center;
     }
 
     /* Container principal */
     .container {
-      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      width: 100%;
     }
 
-    /* Bouton pour le mode sombre */
-    .dark-mode-btn {
+    /* Conteneur des boutons */
+    .button-container {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Boutons */
+    .button-container button {
       padding: 10px 20px;
-      margin-top: 15px;
+      margin-bottom: 10px;
+      font-size: 16px;
       cursor: pointer;
-      background-color: #333;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
+      background-color: white;
+      color: #007acc;
+      border: 1px solid #007acc;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .button-container button.active {
+      background-color: #007acc;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #f0ffff;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 0.9em;
+      color: #333;
     }
 
     /* Styles du mode sombre */
@@ -49,16 +76,6 @@
       color: #333;
     }
 
-    footer {
-      text-align: center;
-      padding: 10px;
-      background-color: #f0ffff;
-      width: 100%;
-      box-sizing: border-box;
-      font-size: 0.9em;
-      color: #333;
-    }
-
     /* Ombre du curseur */
     * {
       cursor: pointer;
@@ -67,17 +84,15 @@
   </style>
 </head>
 <body>
+  <div class="button-container">
+    <button onclick="setFookamonType('fookamon')" id="fookamonBtn">Fookàmon</button>
+    <button onclick="setFookamonType('ancien')" id="ancienBtn">Fookàmon Ancien</button>
+    <button onclick="setFookamonType('nouveau')" id="nouveauBtn">Fookàmon Nouveau</button>
+  </div>
+
   <div class="container">
     <h1>Fookàmon Traduction</h1>
     <small>Ne pas inclure de caractère spéciaux ou d'accents</small>
-
-    <!-- Ajout des boutons Fookàmon -->
-    <div>
-      <button onclick="setFookamonType('fookamon')">Fookàmon</button>
-      <button onclick="setFookamonType('ancien')">Fookàmon Ancien</button>
-      <button onclick="setFookamonType('nouveau')">Fookàmon Nouveau</button>
-    </div>
-
     <input type="text" id="inputText" placeholder="Enter text here..." />
     <button onclick="translateText()">Traduire</button>
     <div id="imageContainer"></div>
