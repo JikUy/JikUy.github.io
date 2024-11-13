@@ -9,8 +9,7 @@
     /* Styles généraux */
     body {
       display: flex;
-      justify-content: center; /* Centre le conteneur */
-      align-items: center; /* Centre verticalement */
+      flex-direction: column;
       min-height: 100vh;
       margin: 0;
       font-family: Arial, sans-serif;
@@ -20,34 +19,35 @@
 
     /* Container principal */
     .container {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       padding: 20px;
       border-radius: 10px;
-      background-color: #fff;
-      color: #333;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #fff; /* Par défaut, fond clair */
+      color: #333; /* Couleur du texte par défaut */
     }
 
     /* Mode sombre */
     body.dark-mode {
-      background-color: #000;
-      color: #fff;
+      background-color: #000; /* Corps en noir */
+      color: #fff; /* Texte en blanc */
     }
 
     .container.dark-mode {
-      background-color: #333;
-      color: #fff;
+      background-color: #333; /* Conteneur en gris foncé */
+      color: #fff; /* Texte en blanc */
     }
 
     h1 {
-      color: #333;
-      transition: color 0.3s ease;
+      color: #333; /* Couleur du titre par défaut */
+      transition: color 0.3s ease; /* Transition pour la couleur */
     }
 
     .container.dark-mode h1 {
-      color: #fff;
+      color: #fff; /* Titre en blanc en mode sombre */
     }
 
     footer {
@@ -61,8 +61,8 @@
     }
 
     footer.dark-mode {
-      background-color: #000;
-      color: #fff;
+      background-color: #000; /* Footer en noir */
+      color: #fff; /* Texte en blanc dans le footer */
     }
 
     .dark-mode-btn {
@@ -79,52 +79,6 @@
       background-color: #fff;
       color: #333;
     }
-
-    /* Styles pour la barre de boutons */
-    .button-bar {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 20px;
-      background-color: #f0f0f0;
-      width: 150px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .button-bar button {
-      padding: 10px;
-      margin: 10px 0;
-      width: 100%;
-      cursor: pointer;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    .button-bar button:hover {
-      background-color: #45a049;
-    }
-
-    body.dark-mode .button-bar {
-      background-color: #333;
-      color: #fff;
-    }
-
-    body.dark-mode .button-bar button {
-      background-color: #666;
-    }
-
-    body.dark-mode .button-bar button:hover {
-      background-color: #555;
-    }
   </style>
 </head>
 <body>
@@ -138,38 +92,10 @@
     <div id="pronunciationContainer" style="margin-top: 20px; font-size: 18px;"></div>
   </div>
 
-  <!-- Barre de boutons sur le côté droit de l'écran -->
-  <div class="button-bar">
-    <button onclick="functionOne()">Button 1</button>
-    <button onclick="functionTwo()">Button 2</button>
-    <button onclick="functionThree()">Button 3</button>
-  </div>
-
   <footer>
     <p>&copy; 2024 Fookàmon. Tous les droits sont réservés par Roman Bouchard.</p>
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    function functionOne() {
-      alert("Button 1 clicked");
-    }
-
-    function functionTwo() {
-      alert("Button 2 clicked");
-    }
-
-    function functionThree() {
-      alert("Button 3 clicked");
-    }
-
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-    }
-
-    function translateText() {
-      // Fonction de traduction
-    }
-  </script>
 </body>
 </html>
