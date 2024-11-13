@@ -19,8 +19,8 @@ function translateText() {
 
   let pronunciationText = ''; // Texte de prononciation
 
-  // Boucle à travers chaque caractère du texte saisi
-  for (let char of inputText.toLowerCase()) {
+  // Boucle à travers chaque caractère du texte saisi (sans .toLowerCase() pour garder les majuscules)
+  for (let char of inputText) {
     const imgSrc = getImageForCharacter(char);
     const pronunciation = getPronunciationForCharacter(char);
 
@@ -101,7 +101,6 @@ function getImageForCharacter(char) {
     'Y': 'yM.png',
     'Z': 'zM.png',
 
-    
     '0': '0.png',
     '1': '1.png',
     '2': '2.png',
