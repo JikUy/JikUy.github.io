@@ -55,7 +55,7 @@ function getImageForCharacter(char) {
     
     'A': 'aM.png', 'B': 'bM.png', 'C': 'cM.png', 'D': 'dM.png', 'E': 'eM.png',
     'F': 'fM.png', 'G': 'gM.png', 'H': 'hM.png', 'I': 'iM.png', 'J': 'jM.png',
-    'K': 'kM.png', 'L': 'lM.png', 'M': 'mM.png', 'N': 'nM.png', 'O': 'oM.png',
+    'K': 'kM2.png', 'L': 'lM.png', 'M': 'mM.png', 'N': 'nM.png', 'O': 'oM.png',
     'P': 'pM.png', 'Q': 'qM.png', 'R': 'rM.png', 'S': 'sM.png', 'T': 'tM.png',
     'U': 'uM.png', 'V': 'vM.png', 'W': 'wM.png', 'X': 'xM.png', 'Y': 'yM.png', 'Z': 'zM.png',
 
